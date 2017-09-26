@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <base href="/">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <!-- CSS -->
+    <link href="../../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../../assets/css/animate.css" rel="stylesheet">
+    <link href="../../assets/css/style.css" rel="stylesheet">
+    <link href="../../assets/css/button-details.css" rel="stylesheet">
+    <link href="../../assets/css/side-by-side-div.css" rel="stylesheet">
+    <link href="../../assets/css/style-checkbox.css" rel="stylesheet">
+    
+    <!-- Main angular files -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular-animate.js"></script>
+  
+  <!-- angular config/routes -->
+  <script src="app/app.js"></script> 
+  <script src="app/router.js"></script>
+
+  <!-- angular controlers -->
+  <script src="app/controllers/userCtrl.js"></script>
+  <script src="app/controllers/researchCtrl.js"></script>
+
+  <!-- angular services -->
+  <script src="app/services/userServices.js"></script>
+  
+	
+  </head>
+
+  <body ng-app="userApp" ng-controller="resCtrl">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#">RE.juntis</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link " href="/research">Pesquisa</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/register">Cadastrar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">Sobre</a>
+          </li>
+    		  
+          
+          
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3">RE.juntis</h1>
+        <p>Sistema para montagem de grade semestral da UERGS.</p>
+        <p>P.s.: Sistema que vai derrubar o Solis.GE.</p>
+    </div>
+</div>
+
+<!-- teste -->
+<div class="container">
+  <form ng-submit="research.resUser();">
+    <div class="container">
+        <p><h4> Pesquisa de interesse das disciplinas </h4></p>
+        <p>Pesquisa de interesse das disciplinas para elaboração da grade de horários do próximo semestre. Selecione abaixo as cadeiras as quais deseja cursar.</p>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h4><a href="#cla1" data-toggle="collapse"> 1º Semestre </a></h4>
+                </div>                
+                </div>
+                <div id="cla1" class="collapse panel-collapse">
+                    <div class="panel-body">
+                      <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="disciplina1 in listaDisciplinas1Sem">
+                          <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div id="wrapper" class="panel-heading">
+                              <div id="leftcolumn"align="left">
+                                <input type="checkbox" ng-model="research.selection.ids[disciplina1.id]" name="group" id="{{disciplina1.id}}">
+                                </input>
+                              </div>
+                              <div id="rightcolumn" align="left">
+                                  <h5>
+                                    <a href="#centercolumn{{ $index + 1 }}" data-toggle="collapse"> 
+                                      {{disciplina1.nome}}  
+                                    </a>
+                                  </h5>
+                              </div>
+                            </div>
+                            <div class="panel-body">
+                            </div>                  
+                            </div>
+                            <div id="centercolumn{{ $index + 1 }}" class="collapse panel-collapse">
+                              <div class="panel-body">
+                                <ul>
+                                    <li>
+                                      Pré-requisito: {{disciplina1.prerequisito}} <br>
+                                      Créditos: {{disciplina1.creditos}} <br>
+                                      Carga horária: {{disciplina1.cargahoraria}}
+                                    </li>
+                                  </ul>
+                              </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+        </li>
+        <li class="list-group-item">
+            <div class="panel panel-primary">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h4><a href="#cla2" data-toggle="collapse"> 2º Semestre </a></h4>
+                </div>                
+                </div>
+                <div id="cla2" class="collapse panel-collapse">
+                    <div class="panel-body">
+                      <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="disciplina2 in listaDisciplinas2Sem">
+                          <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div id="wrapper" class="panel-heading">
+                              <div id="leftcolumn"align="left">
+                                <input type="checkbox" ng-model="research.selection.ids[disciplina2.id]" name="group" id="{{disciplina2.id}}">
+                                </input>
+                              </div>
+                              <div id="rightcolumn" align="left">
+                                  <h5>
+                                    <a href="#centercolumn{{ ($index + 1)*10 }}" data-toggle="collapse"> 
+                                      {{disciplina2.nome}}  
+                                    </a>
+                                  </h5>
+                              </div>
+                            </div>
+                            <div class="panel-body">
+                            </div>                  
+                            </div>
+                            <div id="centercolumn{{ ($index + 1)*10 }}" class="collapse panel-collapse">
+                              <div class="panel-body">
+                                <ul>
+                                  <li>
+                                    Pré-requisito: {{disciplina2.prerequisito}} <br>
+                                    Créditos: {{disciplina2.creditos}} <br>
+                                    Carga horária: {{disciplina2.cargahoraria}}
+                                  </li>
+                                </ul>
+                              </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+        </li>
+        
+    </ul>
+    <div class="container">
+        <pre ng-bind="research.selection.ids | json"></pre>
+        <button class="btn btn-primary" type="submit"> Enviar Pesquisa </button>
+        
+    </div>
+  </form>
+</div>
+<!-- fim teste -->
+   
+    <!-- <div ng-view>
+
+    </div> -->
+
+
+<!--
+    <div class="container">
+
+
+        <div id="wrapper">
+            <div id="leftcolumn"align="left">
+              <input type="checkbox" name="fancy-checkbox-primary" id="fancy-checkbox-primary" autocomplete="off" />
+            </div>
+            <div id="rightcolumn" align="left" class="panel panel-primary">
+              <div class="panel-heading">
+                <h4><a href="#cla3" data-toggle="collapse"> Panel teste</a></h4>
+              </div>
+              <div id="cla3" class="collapse panel-collapse">
+                <div class="panel-body">
+                  <p>This is the panel body.</p>
+                </div>
+                <div class="panel-footer">
+                  <p>This is the panel footer.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+      
+    </div>
+  -->
+
+	
+     <!-- <div class="container">
+      < !-- Example row of columns - ->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>  -->
+
+
+      
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    
+    <script src="../../assets/js/jquery-3.2.1.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="../../assets/js/bootstrap.js"></script>
+  </body>
+</html>
